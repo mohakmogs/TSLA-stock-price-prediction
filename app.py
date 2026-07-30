@@ -68,28 +68,28 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model(r"tesla_lstm_model.keras")
+    return tf.keras.models.load_model(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Model\tesla_lstm_model.keras")
 
 @st.cache_resource
 def load_scaler():
-    return joblib.load(r"scaler.pkl")
+    return joblib.load(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Model\scaler.pkl")
 
 @st.cache_resource
 def load_config():
-    return joblib.load(r"config.pkl")
+    return joblib.load(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Model\config.pkl")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv(r"Book1.csv")
+    return pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Data\Book1.csv")
 
 model = load_model()
 scaler = load_scaler()
 config = load_config()
 df = load_data()
-y_pred_ac=pd.read_csv(r"y_pred_ac.csv",header=None).squeeze()
-y_test_ac=pd.read_csv(r"y_test_ac.csv",header=None).squeeze()
-val_loss=pd.read_csv(r"val_loss.csv",header=None).squeeze()
-loss=pd.read_csv(r"loss.csv",header=None).squeeze()
+y_pred_ac=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\y_pred_ac.csv",header=None).squeeze()
+y_test_ac=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\y_test_ac.csv",header=None).squeeze()
+val_loss=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\val_loss.csv",header=None).squeeze()
+loss=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\loss.csv",header=None).squeeze()
 
 
 # ---------------- Sidebar ---------------- #
@@ -407,95 +407,95 @@ elif page=="📈 Model Performance":
 
 
 # ---------------- ABOUT ---------------- #
+elif page=="ℹ️ About":
+    st.title("📖 About This Project")
 
-st.title("📖 About This Project")
+    st.subheader("🤖 Model Information")
 
-st.subheader("🤖 Model Information")
+    col1, col2 = st.columns(2)
 
-col1, col2 = st.columns(2)
+    with col1:
+        st.info("""
+        **Algorithm:** LSTM
 
-with col1:
-    st.info("""
-    **Algorithm:** LSTM
+        **Framework:** TensorFlow/Keras
 
-    **Framework:** TensorFlow/Keras
+        **Deployment:** Streamlit
+        """)
 
-    **Deployment:** Streamlit
+    with col2:
+        st.info("""
+        **Dataset:** Tesla Historical Stock Data
+
+        **Features:** Open, High, Low, Close, Volume
+
+        **Window Size:** 75 Days
+        """)
+
+    st.subheader("📈 Model Performance")
+
+    c1, c2, c3 = st.columns(3)
+
+    c1.metric("R² Score", "87.91%")
+    c2.metric("MAE", "9.73")
+    c3.metric("RMSE", "12.13")
+
+    with st.expander("⚙ Hyperparameter Tuning", expanded=True):
+
+        st.write("""
+        ✔ LSTM(100)
+
+        ✔ Dropout(0.20)
+
+        ✔ LSTM(50)
+
+        ✔ Dropout(0.20)
+
+        ✔ Dense(25)
+
+        ✔ Dense(1)
+
+        ✔ Optimizer : Adam
+
+        ✔ Loss : Huber Loss
+
+        ✔ ReduceLROnPlateau
+
+        ✔ EarlyStopping
+
+        ✔ Learning Rate : 0.01
+
+        ✔ Batch Size : 20
+
+        ✔ Time Steps : 75
+
+        ✔ MinMaxScaler
+        """)
+
+    st.success("""
+
+    ✅ Used Huber Loss for robust learning
+
+    ✅ ReduceLROnPlateau for automatic LR tuning
+
+    ✅ EarlyStopping to prevent overfitting
+
+    ✅ MinMaxScaler for feature normalization
+
+    ✅ Dropout to reduce overfitting
+
+    ✅ Five market features used
     """)
 
-with col2:
-    st.info("""
-    **Dataset:** Tesla Historical Stock Data
+    st.subheader("🎯 Project Outcome")
 
-    **Features:** Open, High, Low, Close, Volume
+    st.success("""
 
-    **Window Size:** 75 Days
+    ✔ Stable Training & Validation Loss
+
+    ✔ No Significant Overfitting
+
+    ✔ Accurate Trend Prediction
+
+    ✔ Reliable Next-Day Stock Price Prediction
     """)
-
-st.subheader("📈 Model Performance")
-
-c1, c2, c3 = st.columns(3)
-
-c1.metric("R² Score", "87.91%")
-c2.metric("MAE", "9.73")
-c3.metric("RMSE", "12.13")
-
-with st.expander("⚙ Hyperparameter Tuning", expanded=True):
-
-    st.write("""
-    ✔ LSTM(100)
-
-    ✔ Dropout(0.20)
-
-    ✔ LSTM(50)
-
-    ✔ Dropout(0.20)
-
-    ✔ Dense(25)
-
-    ✔ Dense(1)
-
-    ✔ Optimizer : Adam
-
-    ✔ Loss : Huber Loss
-
-    ✔ ReduceLROnPlateau
-
-    ✔ EarlyStopping
-
-    ✔ Learning Rate : 0.01
-
-    ✔ Batch Size : 20
-
-    ✔ Time Steps : 75
-
-    ✔ MinMaxScaler
-    """)
-
-st.success("""
-
-✅ Used Huber Loss for robust learning
-
-✅ ReduceLROnPlateau for automatic LR tuning
-
-✅ EarlyStopping to prevent overfitting
-
-✅ MinMaxScaler for feature normalization
-
-✅ Dropout to reduce overfitting
-
-✅ Five market features used
-""")
-
-st.subheader("🎯 Project Outcome")
-
-st.success("""
-
-✔ Stable Training & Validation Loss
-
-✔ No Significant Overfitting
-
-✔ Accurate Trend Prediction
-
-✔ Reliable Next-Day Stock Price Prediction
-""")
