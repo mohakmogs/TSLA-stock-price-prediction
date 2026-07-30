@@ -127,6 +127,7 @@ Deep Learning model trained on historical stock market data.
     st.info("Select 'Let's Predict' to make predictions.")
     st.info("Select 'Update Data' to update the dataset.")
     st.info("Select 'Model Performance' to view model performance.")
+    st.warning("For best experience desktop :-)")
 
 # ---------------- DATA ---------------- #
 
