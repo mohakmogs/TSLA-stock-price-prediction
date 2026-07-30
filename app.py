@@ -68,28 +68,28 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Model\tesla_lstm_model.keras")
+    return tf.keras.models.load_model(r"tesla_lstm_model.keras")
 
 @st.cache_resource
 def load_scaler():
-    return joblib.load(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Model\scaler.pkl")
+    return joblib.load(r"scaler.pkl")
 
 @st.cache_resource
 def load_config():
-    return joblib.load(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Model\config.pkl")
+    return joblib.load(r"config.pkl")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\Data\Book1.csv")
+    return pd.read_csv(r"Book1.csv")
 
 model = load_model()
 scaler = load_scaler()
 config = load_config()
 df = load_data()
-y_pred_ac=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\y_pred_ac.csv",header=None).squeeze()
-y_test_ac=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\y_test_ac.csv",header=None).squeeze()
-val_loss=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\val_loss.csv",header=None).squeeze()
-loss=pd.read_csv(r"C:\Users\mohak\Desktop\TSLA Stock prediction\var\loss.csv",header=None).squeeze()
+y_pred_ac=pd.read_csv(r"y_pred_ac.csv",header=None).squeeze()
+y_test_ac=pd.read_csv(r"y_test_ac.csv",header=None).squeeze()
+val_loss=pd.read_csv(r"val_loss.csv",header=None).squeeze()
+loss=pd.read_csv(r"loss.csv",header=None).squeeze()
 
 
 # ---------------- Sidebar ---------------- #
